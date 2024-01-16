@@ -1,0 +1,41 @@
+""" IdeaVim enable relativenumber
+""" set relativenumber
+""" set number
+set commentary
+
+""" Map leader to space
+let mapleader = "\<SPACE>"
+
+""" Move selected line(s)
+vmap J :action MoveLineDown<CR>
+vmap K :action MoveLineUp<CR>
+
+""" Remap Search Everywhere to match my NeoVim
+map <leader>pf :action SearchEverywhere<CR>
+
+""" Shortcut for copying to/from System Clipboard
+vmap <leader>Y "+Y
+nmap <leader>y "+y
+vmap <leader>y "+y
+
+vmap <leader>d "_d
+
+vmap <leader>p "_dp
+
+vmap <C-S-c> :action $Copy<CR>
+vmap <C-S-x> :action $Cut<CR>
+map <C-S-v> :action $Paste<CR>
+
+nmap n nzzzv
+nmap N Nzzzv
+
+""" Open Project Explorer (Similar to Harpoon)
+map <C-e> :action RecentFiles<CR>
+
+""" Code Folding
+nnoremap zC :action CollapseRegionRecursively<CR>
+nnoremap zO :action ExpandRegionRecursively<CR>
+
+""" Coding Formating
+nnoremap <leader>cf :action ReformatCode<CR>
+nnoremap <leader>pcf :action Tool_PHP CS FIXER_php-cs-fixer<CR>
