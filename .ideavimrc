@@ -1,6 +1,6 @@
 """ IdeaVim enable relativenumber
-""" set relativenumber
-""" set number
+set relativenumber
+set number
 set commentary
 
 """ Map leader to space
