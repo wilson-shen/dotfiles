@@ -2,6 +2,7 @@
 set relativenumber
 set number
 set commentary
+set ideajoin
 
 """ Map leader to space
 let mapleader = "\<SPACE>"
