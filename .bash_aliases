@@ -8,38 +8,43 @@ alias cpsi="composer install"
 alias cpsr="composer require"
 alias cpsu="composer update"
 alias cpsgu="composer global update"
-alias cpsd="composer dump-autoload"
+alias cpsda="composer dump-autoload"
 
 # switch php version
 alias switchphp="sudo update-alternatives --config php"
 
 # php artisan
 alias pa="php artisan"
+alias pas="php artisan serve"
 alias pamg="php artisan migrate"
 alias pat="php artisan tinker"
 alias pao="php artisan optimize"
 alias pao:c="php artisan optimize:clear"
 pamg:() {
-  php artisan migrate:"$1" "${@:2}"
+	php artisan migrate:"$1" "${@:2}"
 }
 pamk:() {
-  php artisan make:"$1" "${@:2}"
+	php artisan make:"$1" "${@:2}"
 }
 
 # laravel ide helper
+alias ide="php artisan ide-helper:generate && php artisan ide-helper:meta && php artisan ide-helper:models --nowrite"
 alias ide:gen="php artisan ide-helper:generate"
 alias ide:meta="php artisan ide-helper:meta"
 alias ide:models="php artisan ide-helper:models --nowrite"
 
 # php test
-alias put="vendor/bin/phpunit"
+alias phpunit="vendor/bin/phpunit"
 alias pest="vendor/bin/pest"
 
 # valet
 alias val="valet"
 alias valu="valet use"
+alias vall="valet link"
+alias valls="valet links"
+alias valul="valet unlink"
 vali() {
-    valet isolate --site="$1" "$2"
+	valet isolate --site="$1" "$2"
 }
 # npm
 alias ni="npm install"
