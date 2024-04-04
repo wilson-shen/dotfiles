@@ -21,7 +21,7 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
--- connect to wsl
+-- connect to wsl, comment this out if not on windows
 config.wsl_domains = {
     {
         name = 'WSL:Ubuntu',
@@ -56,7 +56,7 @@ config.keys = {
     {
         key = 'w',
         mods = 'CTRL|ALT',
-        action = wezterm.action.CloseCurrentTab { confirm = true },
+        action = wezterm.action.CloseCurrentTab { confirm = false },
     },
 
 }
@@ -75,7 +75,7 @@ config.audible_bell = 'Disabled'
 config.background = {
     {
         source = {
-            File = "C:\\Users\\SHEN\\Desktop\\SHEN\\pokemon.gif"
+            File = "/path/to/image"
         },
         repeat_x = "NoRepeat",
         repeat_y = "NoRepeat",
