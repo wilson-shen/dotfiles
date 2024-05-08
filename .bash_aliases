@@ -74,17 +74,24 @@ alias pnrs="pnpm run start"
 
 # flutter
 alias ft="flutter"
+alias ftd="flutter doctor"
+alias fta="flutter analyze"
+alias ftcl="flutter clean"
 alias ftr="flutter run"
 alias fte="flutter emulators"
-fte:launch(){
+alias ftc="flutter create"
+alias ftpa="flutter pub add"
+alias ftpg="flutter pub get"
+alias ftup="flutter pub upgrade"
+
+fte:launch() {
 	sudo chmod 777 -R /dev/kvm &&flutter emulators --launch "$1"
 }
 
-ftcleanarch() {
-  if [[ $# -eq 0 ]]; then
-    echo "Error: Please specify a feature name with --feature=name or -f=name syntax."
-    return 1
-  fi
+ftnew:cleanarc() {
+  state_management="bloc"
+
+  unset feature_name
 
   while [[ $# -gt 0 ]]; do
     key="$1"
@@ -96,6 +103,12 @@ ftcleanarch() {
       -f=*)
         feature_name="${key#*=}"
         ;;
+      --state-management=*)
+        state_management="${key#*=}"
+        ;;
+      -s=*)
+        state_management="${key#*=}"
+        ;;
       *)
         echo "Error: Invalid flag format. Use --feature=name or -f=name syntax."
         return 1
@@ -105,11 +118,56 @@ ftcleanarch() {
     shift # Shift to the next argument
   done
 
-  cd lib && mkdir -p config/routes config/theme core/error core/network core/usecases core/util features/"$feature_name"/data/data_sources features/"$feature_name"/data/models features/"$feature_name"/data/repository features/"$feature_name"/domain/entities features/"$feature_name"/domain/repository features/"$feature_name"/domain/usecases features/"$feature_name"/presentation/bloc features/"$feature_name"/presentation/pages features/"$feature_name"/presentation/widgets && cd ..
+  # cd to lib directory to prevent wrong starting directory to run this script
+  cd lib &&
+  mkdir -p config core features &&
+  cd ..
+
+  if [[ -n "$feature_name" ]]; then
+    ftnew:feature "$feature_name" --state-management="$state_management"
+  fi
 }
 
 ftnew:feature() {
-  feature_name="$1"  
+  feature_name="$1"
 
-  cd lib && mkdir -p features/"$feature_name"/data/data_sources features/"$feature_name"/data/models features/"$feature_name"/data/repository features/"$feature_name"/domain/entities features/"$feature_name"/domain/repository features/"$feature_name"/domain/usecases features/"$feature_name"/presentation/bloc features/"$feature_name"/presentation/pages features/"$feature_name"/presentation/widgets && cd ..
+  if [[ -z "$feature_name" ]]; then
+    echo "Error: Please specify a feature name."
+    return 1
+  fi
+
+  state_management="bloc"
+
+  # Process optional flags, starting from the second argument
+  shift
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+      --state-management=*)
+        state_management="${key#*=}"
+        ;;
+      -s=*)
+        state_management="${key#*=}"
+        ;;
+      *)
+        echo "Error: Invalid flag format. Use --state-management=name or -s=name syntax."
+        return 1
+        ;;
+    esac
+
+    shift
+  done
+
+  cd lib &&
+  mkdir -p features/"$feature_name"/business/entities \
+           features/"$feature_name"/business/repository \
+           features/"$feature_name"/business/usecases \
+           features/"$feature_name"/data/datasources \
+           features/"$feature_name"/data/models \
+           features/"$feature_name"/data/repository \
+           features/"$feature_name"/presentation/"$state_management" \
+           features/"$feature_name"/presentation/pages \
+           features/"$feature_name"/presentation/widgets &&
+  cd ..
 }
