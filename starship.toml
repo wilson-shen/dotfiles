@@ -1,0 +1,89 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](color_red)\
+$os\
+[](bg:color_yellow fg:color_red)\
+$username\
+[](bg:color_blue fg:color_yellow)\
+$directory\
+[](bg:color_purple fg:color_blue)\
+$git_branch\
+[ ](fg:color_purple)\
+$line_break$character"""
+
+palette = 'monokai_pro'
+
+[palettes.monokai_pro]
+color_red = '#ff6188'
+color_orange = '#fc9867'
+color_yellow = '#ffd866'
+color_green = '#a9dc76'
+color_blue = '#78dce8'
+color_purple = '#ab9df2'
+color_gray = '#908e8f'
+color_white = '#fdf9f3'
+color_black = '#2c292d'
+
+[os]
+disabled = false
+style = "bg:color_red fg:color_black"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bg:color_yellow fg:color_black"
+style_root = "bg:color_yellow fg:color_black"
+format = '[ $user ]($style)'
+
+[directory]
+style = "bg:color_blue fg:color_black"
+format = "[ $path ]($style)"
+truncation_length = 5
+truncation_symbol = "/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol $branch ](fg:color_black bg:color_purple)]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+vimcmd_symbol = '[](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
+vimcmd_replace_symbol = '[](bold fg:color_purple)'
+vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+
