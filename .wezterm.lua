@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 local wezterm = require("wezterm")
 
 -- always maximize
@@ -32,16 +33,20 @@ end
 
 -- font & theme
 config.font = wezterm.font("CodeNewRoman Nerd Font Mono")
+config.font_size = 12.0
 config.color_scheme = "Monokai (dark) (terminal.sexy)"
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.integrated_title_button_style = "Gnome"
+-- config.integrated_title_button_style = "MacOsNative"
+config.audible_bell = "Disabled"
+config.window_close_confirmation = "NeverPrompt"
 
 -- keymaps
 config.disable_default_key_bindings = false
 config.keys = {
 	{
 		key = "C",
-		mods = "CTRL|SHIFT",
+		mods = "CTRL",
 		action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
 	},
 	{
@@ -60,6 +65,7 @@ config.keys = {
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
 	},
 }
+
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
@@ -68,26 +74,20 @@ for i = 1, 9 do
 	})
 end
 
--- no system beep sound
-config.audible_bell = "Disabled"
-
 -- background image
-config.background = {
-	{
-		source = {
-			File = "/path/to/image",
-		},
-		repeat_x = "NoRepeat",
-		repeat_y = "NoRepeat",
-		hsb = {
-			hue = 1.0,
-			saturation = 1.0,
-			brightness = 0.3,
-		},
-	},
-}
-
--- exit without prompt
-config.window_close_confirmation = "NeverPrompt"
+-- config.background = {
+-- 	{
+-- 		source = {
+-- 			File = "/path/to/image",
+-- 		},
+-- 		repeat_x = "NoRepeat",
+-- 		repeat_y = "NoRepeat",
+-- 		hsb = {
+-- 			hue = 1.0,
+-- 			saturation = 1.0,
+-- 			brightness = 0.3,
+-- 		},
+-- 	},
+-- }
 
 return config
