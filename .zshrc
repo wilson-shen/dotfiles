@@ -14,7 +14,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-[[ -f ~/.zsh_aliases ]] && . ~/.zsh_aliases
+[[ -f ~/.zaliases ]] && . ~/.zaliases
 
 source <(fzf --zsh)
 
