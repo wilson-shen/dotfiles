@@ -1,0 +1,186 @@
+# Common
+alias ls='ls --color=auto'
+alias la='ls -a --color=auto'
+alias lA='ls -A --color=auto'
+alias grep='grep --color=auto'
+alias cdws='cd ~/Desktop/Codes/'
+
+# fzf
+alias fzfp='fzf --preview="bat --style=numbers --color=always {}"'
+alias fzfo='nvim $(fzf --preview="bat --style=numbers --color=always {}")'
+
+# NeoVim
+alias nvi='nvim'
+alias vim='nvim'
+
+# composer
+alias cps='composer'
+alias cpsi='composer install'
+alias cpsr='composer require'
+alias cpsu='composer update'
+alias cpsgu='composer global update'
+alias cpsda='composer dump-autoload'
+
+# switch php version
+alias switchphp='sudo update-alternatives --config php'
+
+# php artisan
+alias pa='php artisan'
+alias pas='php artisan serve'
+alias pamg='php artisan migrate'
+alias pat='php artisan tinker'
+alias pao='php artisan optimize'
+alias pao:c='php artisan optimize:clear'
+pamg:() {
+	php artisan migrate:"$1" "${@:2}"
+}
+pamk:() {
+	php artisan make:"$1" "${@:2}"
+}
+
+# laravel ide helper
+alias ide='php artisan ide-helper:generate && php artisan ide-helper:meta && php artisan ide-helper:models --nowrite'
+alias ide:gen='php artisan ide-helper:generate'
+alias ide:meta='php artisan ide-helper:meta'
+alias ide:models='php artisan ide-helper:models --nowrite'
+
+# php test
+alias phpunit='vendor/bin/phpunit'
+alias pest='vendor/bin/pest'
+
+# valet
+alias val='valet'
+alias valu='valet use'
+alias vall='valet link'
+alias valls='valet links'
+alias valul='valet unlink'
+vali() {
+	valet isolate --site="$1" "$2"
+}
+
+# npm
+alias n='npm'
+alias nx='npx'
+alias ni='npm install'
+alias nid='npm install -D'
+alias nu='npm update'
+alias nug='npm update -g'
+alias nr='npm remove'
+alias nrb='npm run build'
+alias nrd='npm run dev'
+alias nrs='npm run start'
+
+# pnpm
+alias pn='pnpm'
+alias pnx='pnpm dlx'
+alias pnex='pnpm exec'
+alias pna='pnpm add'
+alias pnad='pnpm add -D'
+alias pni='pnpm install'
+alias pnu='pnpm update'
+alias pnug='pnpm update -g'
+alias pnr='pnpm remove'
+alias pnrb='pnpm run build'
+alias pnrd='pnpm run dev'
+alias pnrs='pnpm run start'
+
+# flutter
+alias ft='flutter'
+alias ftd='flutter doctor'
+alias fta='flutter analyze'
+alias ftcl='flutter clean'
+alias ftr='flutter run'
+alias fte='flutter emulators'
+alias ftc='flutter create'
+alias ftpa='flutter pub add'
+alias ftpg='flutter pub get'
+alias ftup='flutter pub upgrade'
+
+fte:launch() {
+	sudo chmod 777 -R /dev/kvm &&flutter emulators --launch "$1"
+}
+
+ftnew:cleanarc() {
+  state_management="bloc"
+
+  unset feature_name
+
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+      --feature=*)
+        feature_name="${key#*=}"
+				;;
+      -f=*)
+        feature_name="${key#*=}"
+        ;;
+      --state-management=*)
+        state_management="${key#*=}"
+        ;;
+      -s=*)
+        state_management="${key#*=}"
+        ;;
+      *)
+        echo "Error: Invalid flag format. Use --feature=name or -f=name syntax."
+        return 1
+        ;;
+    esac
+
+    shift # Shift to the next argument
+  done
+
+  # cd to lib directory to prevent wrong starting directory to run this script
+  cd lib &&
+  mkdir -p config core features &&
+  cd ..
+
+  if [[ -n "$feature_name" ]]; then
+    ftnew:feature "$feature_name" --state-management="$state_management"
+  fi
+}
+
+ftnew:feature() {
+  feature_name="$1"
+
+  if [[ -z "$feature_name" ]]; then
+    echo "Error: Please specify a feature name."
+    return 1
+  fi
+
+  state_management="bloc"
+
+  # Process optional flags, starting from the second argument
+  shift
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+      --state-management=*)
+        state_management="${key#*=}"
+        ;;
+      -s=*)
+        state_management="${key#*=}"
+        ;;
+      *)
+        echo "Error: Invalid flag format. Use --state-management=name or -s=name syntax."
+        return 1
+        ;;
+    esac
+
+    shift
+  done
+
+  cd lib &&
+  mkdir -p features/"$feature_name"/business/entities \
+           features/"$feature_name"/business/repository \
+           features/"$feature_name"/business/usecases \
+           features/"$feature_name"/data/datasources \
+           features/"$feature_name"/data/models \
+           features/"$feature_name"/data/repository \
+           features/"$feature_name"/presentation/"$state_management" \
+           features/"$feature_name"/presentation/pages \
+           features/"$feature_name"/presentation/widgets &&
+  cd ..
+}
+
