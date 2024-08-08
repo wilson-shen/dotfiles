@@ -37,6 +37,13 @@ export PATH="$PATH:$HOME/development/android/emulator"
 export PATH="$PATH:$HOME/development/android/platform-tools"
 
 # Copy Rust environment variables
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
+# Local bin
+export PATH="$HOME/.local/bin:$PATH"
+
+# CSharp LS
+export PATH="$PATH:/home/shen/.dotnet/tools" 
+
+# Starship
 eval "$(starship init zsh)"
