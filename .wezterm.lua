@@ -21,16 +21,6 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- connect to wsl, comment this out if not on windows
--- config.wsl_domains = {
---     {
---         name = 'WSL:Ubuntu',
---         distribution = 'Ubuntu',
---         default_cwd = "~",
---     },
--- }
--- config.default_domain = 'WSL:Ubuntu'
-
 config.font = wezterm.font("CodeNewRoman Nerd Font Mono")
 config.font_size = 12.0
 config.color_scheme = "Monokai (dark) (terminal.sexy)"
@@ -80,19 +70,20 @@ for i = 1, 9 do
 end
 
 -- background image
--- config.background = {
--- 	{
--- 		source = {
--- 			File = "/path/to/image",
--- 		},
--- 		repeat_x = "NoRepeat",
--- 		repeat_y = "NoRepeat",
--- 		hsb = {
--- 			hue = 1.0,
--- 			saturation = 1.0,
--- 			brightness = 0.3,
--- 		},
--- 	},
--- }
+config.background = {
+	{
+		source = {
+			File = "/home/shen/Desktop/SHEN/images/pokemon.gif",
+		},
+		repeat_x = "NoRepeat",
+		repeat_y = "NoRepeat",
+		hsb = {
+			hue = 1.0,
+			saturation = 1.0,
+			brightness = 0.15,
+		},
+    horizontal_align = "Center",
+	},
+}
 
 return config
