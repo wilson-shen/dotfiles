@@ -4,7 +4,7 @@ alias la='ls -a --color=auto'
 alias lA='ls -A --color=auto'
 alias grep='grep --color=auto'
 alias cdws='cd ~/Desktop/Codes/'
-alias cdnvim='cd ~/.config/nvim/'
+alias cdnvim='cd ~/.config/nvim/ && nvim .'
 
 # fzf
 alias fzfp='fzf --preview="bat --style=numbers --color=always {}"'
@@ -95,6 +95,7 @@ alias dnwr='dotnet watch run'
 alias dnap='dotnet add package'
 alias dnrp='dotnet remove package'
 alias dnrs='dotnet restore'
+alias dncb='dotnet clean && dotnet build'
 
 # flutter
 alias ft='flutter'
