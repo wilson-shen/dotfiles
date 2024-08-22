@@ -18,6 +18,16 @@ compinit
 
 source <(fzf --zsh)
 
+# Activate syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Disable underline
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
+# Activate autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -35,9 +45,6 @@ export PATH="$PATH:$HOME/development/android/emulator"
 
 # Android platform tools
 export PATH="$PATH:$HOME/development/android/platform-tools"
-
-# Copy Rust environment variables
-# . "$HOME/.cargo/env"
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
