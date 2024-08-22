@@ -2,6 +2,7 @@
 alias ls='ls --color=auto'
 alias la='ls -a --color=auto'
 alias lA='ls -A --color=auto'
+alias cat='bat'
 alias grep='grep --color=auto'
 alias cdws='cd ~/Desktop/Codes/'
 alias cdnvim='cd ~/.config/nvim/ && nvim .'
@@ -196,4 +197,3 @@ ftnew:feature() {
            features/"$feature_name"/presentation/widgets &&
   cd ..
 }
-
