@@ -27,7 +27,7 @@ config = {
 	background = {
 		{
 			source = {
-				File = "/home/shen/Desktop/SHEN/images/pokemon.gif",
+				File = "/path/to/image",
 			},
 			repeat_x = "NoRepeat",
 			repeat_y = "NoRepeat",
@@ -44,7 +44,7 @@ config = {
 	enable_tab_bar = true,
 	font = wezterm.font("CodeNewRoman Nerd Font Mono"),
 	font_size = 12.0,
-  integrated_title_button_style = "Gnome",
+	integrated_title_button_style = "Gnome",
 	keys = {
 		{
 			key = "C",
@@ -56,6 +56,16 @@ config = {
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
+		{
+			key = "t",
+			mods = "SUPER",
+			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		},
+		{
+			key = "w",
+			mods = "SUPER",
+			action = wezterm.action.CloseCurrentTab({ confirm = false }),
+		},
 	},
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
@@ -66,5 +76,13 @@ config = {
 		bottom = 0,
 	},
 }
+
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "SUPER",
+		action = wezterm.action.ActivateTab(i - 1),
+	})
+end
 
 return config
