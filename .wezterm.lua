@@ -47,13 +47,13 @@ config = {
 	integrated_title_button_style = "Gnome",
 	keys = {
 		{
-			key = "C",
-			mods = "CTRL|SHIFT",
+			key = "c",
+			mods = "SUPER",
 			action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
 		},
 		{
-			key = "V",
-			mods = "CTRL|SHIFT",
+			key = "v",
+			mods = "SUPER",
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
 		{
