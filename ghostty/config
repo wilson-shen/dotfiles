@@ -1,0 +1,24 @@
+# Configurations
+font-family = CodeNewRoman Nerd Font Mono
+font-style = Regular
+font-size = 15
+font-thicken = true
+
+adjust-font-baseline = 25%
+
+theme = Monokai Soda
+
+cursor-style = block
+
+quit-after-last-window-closed = true
+
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+macos-option-as-alt = true
+
+bold-is-bright = true
+
+# Keybindings
+keybind = super+shift+h=goto_split:left
+keybind = super+shift+l=goto_split:right
