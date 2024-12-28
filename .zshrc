@@ -14,7 +14,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# MacOS Only
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [[ -f ~/.zaliases ]] && . ~/.zaliases
 
@@ -22,7 +23,7 @@ source <(fzf --zsh)
 
 # Activate syntax highlighting
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Disable underline
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -31,7 +32,7 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # Activate autosuggestions
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -45,7 +46,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Composer
 # export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
-# NodeJS
+# NodeJS - MacOS
 # export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 # export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
