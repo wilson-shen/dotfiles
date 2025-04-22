@@ -19,6 +19,9 @@ macos-option-as-alt = true
 
 bold-is-bright = true
 
+window-width = 99999
+window-height = 99999
+
 # Keybindings
 keybind = super+shift+h=goto_split:left
 keybind = super+shift+l=goto_split:right
